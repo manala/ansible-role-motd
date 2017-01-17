@@ -1,5 +1,5 @@
 .SILENT:
-.PHONY: help
+.PHONY: help templates
 
 ## Colors
 COLOR_RESET   = \033[0m
@@ -94,3 +94,15 @@ test: test-template
 test-template:
 	ansible-playbook tests/template.yml --syntax-check
 	ansible-playbook tests/template.yml
+
+#############
+# Templates #
+#############
+
+templates:
+	# Manala
+	catimg -w 80 -r 1 templates/template/manala.png > templates/template/manala.j2
+	echo "\n\n{{ manala_motd_message|center(80) }}" >> templates/template/manala.j2
+	# Elao
+	catimg -w 80 -r 1 templates/template/elao.png > templates/template/elao.j2
+	echo "\n\n{{ manala_motd_message|center(80) }}" >> templates/template/elao.j2
