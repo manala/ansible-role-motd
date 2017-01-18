@@ -99,10 +99,8 @@ test-template:
 # Templates #
 #############
 
+templates: SHELL:=/bin/bash
 templates:
 	# Manala
-	catimg -w 80 -r 1 templates/template/manala.png > templates/template/manala.j2
-	echo "\n{{ manala_motd_message|center(80) }}" >> templates/template/manala.j2
-	# Elao
-	catimg -w 80 -r 1 templates/template/elao.png > templates/template/elao.j2
-	echo "\n{{ manala_motd_message|center(80) }}" >> templates/template/elao.j2
+	catimg -w 80 -r 1 <(curl -L https://github.com/manala/resources/raw/master/logo_320_320.png) > templates/template/manala.j2
+	echo -e "\n{{ manala_motd_message|center(80) }}" >> templates/template/manala.j2
