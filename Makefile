@@ -1,5 +1,5 @@
 .SILENT:
-.PHONY: help
+.PHONY: help templates
 
 ## Colors
 COLOR_RESET   = \033[0m
@@ -94,3 +94,13 @@ test: test-template
 test-template:
 	ansible-playbook tests/template.yml --syntax-check
 	ansible-playbook tests/template.yml
+
+#############
+# Templates #
+#############
+
+templates: SHELL:=/bin/bash
+templates:
+	# Manala
+	catimg -w 80 -r 1 <(curl -L https://github.com/manala/resources/raw/master/logo_320_320.png) > templates/template/manala.j2
+	echo -e "\n{{ manala_motd_message|center(80) }}" >> templates/template/manala.j2
